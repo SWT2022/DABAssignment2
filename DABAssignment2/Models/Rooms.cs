@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace DABAssignment2.Models
 {
-    public class Room
+    public class Rooms : Locations
     {
         public long RoomId { get; set; }
-
-        public Location _Location { get; set; }
-
     }
 }

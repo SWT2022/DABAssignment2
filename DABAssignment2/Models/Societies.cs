@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DABAssignment2.Models
 {
-    public class Society
+    public class Societies
     {
         public long SocietyId { get; set; }
 
@@ -19,11 +19,9 @@ namespace DABAssignment2.Models
 
         public long CVR_Number { get; set; }
 
-        public Municipality Municipalities { get; set; }
+        //public Municipality Municipalities { get; set; }
 
-        public ICollection<Member> Members { get; set; }
-        
-
+        public ICollection<SocietiesMembers> SocietiesMembers { get; set; }
 
     }
 }

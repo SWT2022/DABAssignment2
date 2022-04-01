@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DABAssignment2.Models
 {
-    public class Location
+    public class Locations
     {
         public long LocationId { get; set; }
 
@@ -21,16 +21,18 @@ namespace DABAssignment2.Models
         [MaxLength(64)]
         public string Address { get; set; }
 
-        public ICollection<Member> Members { get; set; }
+        public ICollection<MembersLocationsReservations> Reservations { get; set; }
 
-        public Municipality _Municipality { get; set; }
+        // public Municipality _Municipality { get; set; }
 
-        public ICollection<Property> properties { get; set; }
+        public ICollection<LocationsProperties> LocationsProperties { get; set; }
 
-        public List<Room> Rooms { get; set; }
+        public List<Rooms> Rooms { get; set; }
 
         public bool Availability { get; set; } 
 
+        public ICollection<LocationHolidays> Holidays { get; set; }
+        public ICollection<LocationOpeningHours> OpeningHours { get; set; }
 
     }
 }

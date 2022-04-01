@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace DABAssignment2.Models
 {
-    public class Property
+    public class Properties
     {
-        public long Id { get; set; }
-
         [MaxLength(64)]
-        public string Name { get; set; }
+        public string PropName { get; set; }
 
-        public ICollection<Location> Locations { get; set; }
+        public ICollection<LocationsProperties> LocationsProperties { get; set; }
 
     }
 }

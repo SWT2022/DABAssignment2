@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DABAssignment2.Models
 {
-    public class Member
+    public class Members
     {
         public long MemberId { get; set; }
 
@@ -19,8 +19,8 @@ namespace DABAssignment2.Models
 
         public int PhoneNumber { get; set; }
 
-        public ICollection<Society> Societies { get; set; }
+        public ICollection<SocietiesMembers> SocietiesMembers { get; set; }
 
-        public ICollection<Location> Locations { get; set; }
+        public ICollection<MembersLocationsReservations> Reservations { get; set; }
     }
 }

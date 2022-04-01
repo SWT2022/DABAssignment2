@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace DABAssignment2.Models
 {
-    public class Chairmen
+    public class Chairmen : Members
     {
-        public long ChairmenId { get; set; }
+        [MaxLength(10)]
+        public string CPR_number { get; set; }
 
         [MaxLength(64)]
         public string HomeAdress { get; set; }
-
-
     }
 }
