@@ -118,6 +118,11 @@ namespace DABAssignment2
                 .WithMany(p => p.LocationsProperties)
                 .HasForeignKey(lp => lp.PropName);
 
+            modelBuilder.Entity<Properties>().HasData(new Properties
+                {
+                    PropName = "WiFi"
+                }
+            );
 
             modelBuilder.Entity<Society>().HasData(new Society
             {
