@@ -11,6 +11,7 @@ namespace DABAssignment2.Models
 
         public long RoomId { get; set; }
 
+
         public int Capacity { get; set; }
 
         public int Access_code { get; set; }

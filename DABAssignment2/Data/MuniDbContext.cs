@@ -118,11 +118,26 @@ namespace DABAssignment2
                 .WithMany(p => p.LocationsProperties)
                 .HasForeignKey(lp => lp.PropName);
 
+            // LocationsRooms (one to many)
+            // denne mangler
+
+
+
+
+
+            // seeding data
             modelBuilder.Entity<Properties>().HasData(new Properties
                 {
                     PropName = "WiFi"
                 }
             );
+
+            modelBuilder.Entity<LocationsProperties>().HasData(new LocationsProperties
+            {
+                LocationId = 1,
+                PropName = "Wi-Fi",
+
+            });
 
             modelBuilder.Entity<Society>().HasData(new Society
             {
@@ -140,6 +155,14 @@ namespace DABAssignment2
                 Email = "jan@email.com",
 
             });
+
+            modelBuilder.Entity<SocietiesMember>().HasData(new
+            {
+                SocietiesId = 1,
+                MemberId = 1,
+
+            });
+
 
             modelBuilder.Entity<Chairmen>().HasData(new Chairmen
             {
@@ -169,8 +192,9 @@ namespace DABAssignment2
                 Capacity = 30,
                 Access_code = 1234,
                 Availability = true,
-
             });
+
+            //modelBuilder.Entity<LocationsRooms>
 
 
 

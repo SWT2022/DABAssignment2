@@ -9,7 +9,7 @@ namespace DABAssignment2.Models
 {
     public class SocietiesMember
     {
-        public long SocietiesMembersId { get; set; }
+        public long SocietiesMemberId { get; set; }
         public long SocietyId { get; set; }
         public Society Society { get; set; }
         public long MemberId { get; set; }

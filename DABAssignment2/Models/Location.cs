@@ -23,7 +23,6 @@ namespace DABAssignment2.Models
 
         public List<MembersLocationsReservations> Reservations { get; set; }
 
-        // public Municipality _Municipality { get; set; }
 
         public List<LocationsProperties> LocationsProperties { get; set; }
 
