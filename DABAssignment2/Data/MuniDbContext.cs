@@ -118,10 +118,11 @@ namespace DABAssignment2
                 .WithMany(p => p.LocationsProperties)
                 .HasForeignKey(lp => lp.PropName);
 
-            // LocationsRooms (one to many)
-            // denne mangler
 
-
+            modelBuilder.Entity<Room>()
+                .HasOne(l => l.Location)
+                .WithMany(r => r.Rooms)
+                .HasForeignKey(l => l.LocationId);
 
 
 
@@ -134,8 +135,9 @@ namespace DABAssignment2
 
             modelBuilder.Entity<LocationsProperties>().HasData(new LocationsProperties
             {
+                LocationsPropertiesId = 1,
                 LocationId = 1,
-                PropName = "Wi-Fi",
+                PropName = "WiFi",
 
             });
 
@@ -156,9 +158,10 @@ namespace DABAssignment2
 
             });
 
-            modelBuilder.Entity<SocietiesMember>().HasData(new
+            modelBuilder.Entity<SocietiesMember>().HasData(new SocietiesMember
             {
-                SocietiesId = 1,
+                SocietiesMemberId = 1,
+                SocietyId = 1,
                 MemberId = 1,
 
             });
@@ -184,20 +187,36 @@ namespace DABAssignment2
                 Address = "Stivej 3",
                 Availability = true,
 
+
             });
 
             modelBuilder.Entity<Room>().HasData(new Room
             {
                 RoomId = 1,
+                LocationId = 1,
                 Capacity = 30,
                 Access_code = 1234,
                 Availability = true,
+
             });
 
-            //modelBuilder.Entity<LocationsRooms>
+            modelBuilder.Entity<MembersRoomsReservations>().HasData(new MembersRoomsReservations
+            {
+                MemberId = 1,
+                ReservationBegin = DateTime.Now,
+                ReservationEnd = DateTime.Now.AddHours(1),
+                RoomId = 1,
 
+            });
 
+            modelBuilder.Entity<MembersLocationsReservations>().HasData(new MembersLocationsReservations
+            {
+                MemberId = 1,
+                ReservationBegin = DateTime.Now,
+                ReservationEnd = DateTime.Now.AddHours(1),
+                LocationId = 1,
 
+            });
 
         }
 

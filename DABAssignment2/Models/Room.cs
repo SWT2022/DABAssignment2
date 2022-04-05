@@ -16,6 +16,8 @@ namespace DABAssignment2.Models
 
         public int Access_code { get; set; }
 
+        public long LocationId { get; set; }
+
         public Location Location { get; set; }
 
         public bool Availability { get; set; }
