@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DABAssignment2.Models
 {
-    public class Rooms : Locations
+    public class RoomHolidays
     {
+        public DateTime Holiday { get; set; }
         public long RoomId { get; set; }
+        public Room Room { get; set; }
     }
 }

@@ -18,22 +18,22 @@ namespace DABAssignment2
 
         //public DbSet<Municipality> Municipalities { get; set; }
 
-        public DbSet<Societies> Societies { get; set; }
+        public DbSet<Society> Societies { get; set; }
 
-        public DbSet<Members> Members { get; set; }
+        public DbSet<Member> Members { get; set; }
 
         public DbSet<Chairmen> Chairmens { get; set; }
 
-        public DbSet<Locations> Locations { get; set; }
+        public DbSet<Location> Locations { get; set; }
 
         public DbSet<Properties> Properties { get; set; }
 
-        public DbSet<Rooms> Rooms { get; set; }
+        public DbSet<Room> Rooms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Chairmen
-            modelBuilder.Entity<Chairmen>().HasKey(c => new { c.CPR_number });
+            //modelBuilder.Entity<Chairmen>().HasKey(c => new { c.CPR_number });
 
             // Properties
             modelBuilder.Entity<Properties>().HasKey(p => new { p.PropName });
@@ -55,6 +55,23 @@ namespace DABAssignment2
                 .WithMany(l => l.OpeningHours)
                 .HasForeignKey(loh => loh.LocationId);
 
+            // RoomHolidays (one to many)
+            modelBuilder.Entity<RoomHolidays>().HasKey(lh => new { lh.Holiday, lh.RoomId });
+
+            modelBuilder.Entity<RoomHolidays>()
+                .HasOne(lh => lh.Room)
+                .WithMany(l => l.Holidays)
+                .HasForeignKey(lh => lh.RoomId);
+
+            // RoomOpeningHours (one to many)
+            modelBuilder.Entity<RoomOpeningHours>()
+                .HasKey(loh => new { loh.Opening, loh.Closing, loh.RoomId });
+
+            modelBuilder.Entity<RoomOpeningHours>()
+                .HasOne(loh => loh.Room)
+                .WithMany(l => l.OpeningHours)
+                .HasForeignKey(loh => loh.RoomId);
+
             // MembersLocationsReservations (many to many)
             modelBuilder.Entity<MembersLocationsReservations>()
                 .HasKey(mlr => new {mlr.LocationId, mlr.ReservationBegin, mlr.ReservationEnd});
@@ -65,7 +82,20 @@ namespace DABAssignment2
                 .HasForeignKey(mlr => mlr.LocationId);
             modelBuilder.Entity<MembersLocationsReservations>()
                 .HasOne(mlr => mlr.Member)
-                .WithMany(m => m.Reservations)
+                .WithMany(m => m.LocationsReservations)
+                .HasForeignKey(mlr => mlr.MemberId);
+
+            // MembersRoomsReservations (many to many)
+            modelBuilder.Entity<MembersRoomsReservations>()
+                .HasKey(mlr => new { mlr.RoomId, mlr.ReservationBegin, mlr.ReservationEnd });
+
+            modelBuilder.Entity<MembersRoomsReservations>()
+                .HasOne(mlr => mlr.Room)
+                .WithMany(l => l.Reservations)
+                .HasForeignKey(mlr => mlr.RoomId);
+            modelBuilder.Entity<MembersRoomsReservations>()
+                .HasOne(mlr => mlr.Member)
+                .WithMany(m => m.RoomsReservations)
                 .HasForeignKey(mlr => mlr.MemberId);
 
             // SocietiesMembers (many to many)
@@ -86,7 +116,10 @@ namespace DABAssignment2
             modelBuilder.Entity<LocationsProperties>()
                 .HasOne(lp => lp.Property)
                 .WithMany(p => p.LocationsProperties)
-                .HasForeignKey(lp => lp.PropertyId);
+                .HasForeignKey(lp => lp.PropName);
+
+
+            //modelBuilder.Entity<Society>().HasData(new Society { SocietyId = }) 
         }
 
     }

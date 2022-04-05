@@ -11,9 +11,9 @@ namespace DABAssignment2.Models
     {
         public long SocietiesMembersId { get; set; }
         public long SocietyId { get; set; }
-        public Societies Society { get; set; }
+        public Society Society { get; set; }
         public long MemberId { get; set; }
-        public Members Member { get; set; }
+        public Member Member { get; set; }
 
     }
 }

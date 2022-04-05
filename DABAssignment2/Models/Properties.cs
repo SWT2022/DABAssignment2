@@ -9,10 +9,12 @@ namespace DABAssignment2.Models
 {
     public class Properties
     {
+        
+
         [MaxLength(64)]
         public string PropName { get; set; }
 
-        public ICollection<LocationsProperties> LocationsProperties { get; set; }
+        public List<LocationsProperties> LocationsProperties { get; set; }
 
     }
 }

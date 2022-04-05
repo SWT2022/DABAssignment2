@@ -10,8 +10,8 @@ namespace DABAssignment2.Models
     {
         public long LocationsPropertiesId { get; set; }
         public long LocationId { get; set; }
-        public Locations Location { get; set; }
-        public long PropertyId { get; set; }
+        public Location Location { get; set; }
+        public string PropName { get; set; }
         public Properties Property { get; set; }
     }
 }
