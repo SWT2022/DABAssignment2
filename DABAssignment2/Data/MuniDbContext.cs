@@ -99,11 +99,11 @@ namespace DABAssignment2
                 .HasForeignKey(mlr => mlr.MemberId);
 
             // SocietiesMembers (many to many)
-            modelBuilder.Entity<SocietiesMembers>()
+            modelBuilder.Entity<SocietiesMember>()
                 .HasOne(sm => sm.Society)
                 .WithMany(s => s.SocietiesMembers)
                 .HasForeignKey(sm => sm.SocietyId);
-            modelBuilder.Entity<SocietiesMembers>()
+            modelBuilder.Entity<SocietiesMember>()
                 .HasOne(sm => sm.Member)
                 .WithMany(m => m.SocietiesMembers)
                 .HasForeignKey(sm => sm.MemberId);
@@ -119,7 +119,57 @@ namespace DABAssignment2
                 .HasForeignKey(lp => lp.PropName);
 
 
-            //modelBuilder.Entity<Society>().HasData(new Society { SocietyId = }) 
+            modelBuilder.Entity<Society>().HasData(new Society
+            {
+                SocietyId = 1,
+                Activity = "Football",
+                CVR_Number = 1234,
+                Name = "FootballFc"
+            });
+
+            modelBuilder.Entity<Member>().HasData(new Member
+            {
+                MemberId = 1,
+                Name = "Jan",
+                PhoneNumber = 12345678,
+                Email = "jan@email.com",
+
+            });
+
+            modelBuilder.Entity<Chairmen>().HasData(new Chairmen
+            {
+                MemberId = 2,
+                Name = "Per",
+                PhoneNumber = 87654321,
+                Email = "per@email.com",
+                HomeAdress = "Gadevej 9",
+                CPR_number = "1234567890",
+
+            });
+
+            modelBuilder.Entity<Location>().HasData(new Location
+            {
+                LocationId = 1,
+                Name = "FootballClub",
+                Capacity = 300,
+                Access_code = 4321,
+                Address = "Stivej 3",
+                Availability = true,
+
+            });
+
+            modelBuilder.Entity<Room>().HasData(new Room
+            {
+                RoomId = 1,
+                Capacity = 30,
+                Access_code = 1234,
+                Availability = true,
+
+            });
+
+
+
+
         }
 
     }

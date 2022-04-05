@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DABAssignment2.Models
 {
-    public class SocietiesMembers
+    public class SocietiesMember
     {
         public long SocietiesMembersId { get; set; }
         public long SocietyId { get; set; }

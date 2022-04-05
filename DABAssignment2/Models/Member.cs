@@ -19,7 +19,7 @@ namespace DABAssignment2.Models
 
         public int PhoneNumber { get; set; }
 
-        public List<SocietiesMembers> SocietiesMembers { get; set; }
+        public List<SocietiesMember> SocietiesMembers { get; set; }
 
         public List<MembersLocationsReservations> LocationsReservations { get; set; }
 
