@@ -11,10 +11,27 @@ namespace DABAssignment2.QueryHelpers
     {
         public async void ListRoomsNAddresses(MuniDbContext context)
         {
-            var rooms = await context.Rooms.ToListAsync();
+            var rooms = await context.Rooms.Select(r => new
+            {
+                Id = r.RoomId,
+                Address = context.Locations.Where(l => l.LocationId == r.LocationId)
+                    .Select(l => l.Address).ToList(),
+            }).ToListAsync();
+
+
+            var locations = await context.Locations.ToListAsync();
+
+            Console.WriteLine("Rooms:");
             foreach (var room in rooms)
             {
-                Console.WriteLine($"Name: {room.RoomId} Address: {room.Location.Address}");
+
+                Console.WriteLine($"Id: {room.Id} Address: {room.Address}");
+            }
+
+            Console.WriteLine("Locations:");
+            foreach (var location in locations)
+            {
+                Console.WriteLine($"Name: {location.Name} Address: {location.Address}");
             }
         }
 
