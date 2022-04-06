@@ -132,50 +132,69 @@ namespace DABAssignment2
 
 
             modelBuilder.Entity<Properties>().HasData(
-                new { PropName = "WiFi" },
-                new { PromName = "WC" },
-                new { PropName = "Coffee Machine"}
+                new Properties { PropName = "WiFi" },
+                new Properties { PropName = "WC" },
+                new Properties { PropName = "Coffee Machine"}
             );
 
 
             modelBuilder.Entity<LocationsProperties>().HasData(
-                new
+                new LocationsProperties
                 {
                     LocationsPropertiesId = 1,
                     LocationId = 1,
                     PropName = "WiFi",
                 },
-                new
+                new LocationsProperties
                 {
                     LocationsPropertiesId = 2,
-                    LocationId = 1,
+                    LocationId = 2,
                     PropName = "WiFi",
 
                 },
-                new
+                new LocationsProperties
                 {
                     LocationsPropertiesId = 3,
-                    LocationId = 1,
+                    LocationId = 3,
                     PropName = "WiFi",
+                },
+                new LocationsProperties
+                {
+                    LocationsPropertiesId = 4,
+                    LocationId = 1,
+                    PropName = "WC",
+                },
+                new LocationsProperties
+                {
+                    LocationsPropertiesId = 5,
+                    LocationId = 2,
+                    PropName = "WC",
+
+                },
+                new LocationsProperties
+                {
+                    LocationsPropertiesId = 6,
+                    LocationId = 3,
+                    PropName = "WC",
                 });
 
  
             modelBuilder.Entity<Society>().HasData(
-                new
+                new Society
                 {
                     SocietyId = 1,
                     Activity = "Football",
                     CVR_Number = 1234,
                     Name = "FootballFc"
                 },
-                new
+                new Society
                 {
                     SocietyId = 2,
                     Activity = "Programming",
                     CVR_Number = 4321,
                     Name = "Programmers"
                 },
-                new
+                new Society
                 {
                     SocietyId = 3,
                     Activity = "Gaming",
@@ -186,7 +205,7 @@ namespace DABAssignment2
 
 
             modelBuilder.Entity<Member>().HasData(
-                new
+                new Member
                 {
                     MemberId = 1,
                     Name = "Jan",
@@ -194,7 +213,7 @@ namespace DABAssignment2
                     Email = "jan@email.com",
 
                 },
-                new
+                new Member
                 {
                     MemberId = 2,
                     Name = "Ole",
@@ -202,7 +221,7 @@ namespace DABAssignment2
                     Email = "Ole@email.com",
 
                 },
-                new
+                new Member
                 {
                     MemberId = 3,
                     Name = "Jens",
@@ -213,72 +232,72 @@ namespace DABAssignment2
                 );
 
             modelBuilder.Entity<SocietiesMember>().HasData(
-                new
+                new SocietiesMember
                 {
                     SocietiesMemberId = 1,
                     SocietyId = 1,
                     MemberId = 1,
 
                 },
-                new
+                new SocietiesMember
                 {
                     SocietiesMemberId = 2,
                     SocietyId = 1,
                     MemberId = 2,
                 },
-                new
+                new SocietiesMember
                 {
                     SocietiesMemberId = 3,
                     SocietyId = 1,
                     MemberId = 3,
                 },
-                new
+                new SocietiesMember
                 {
                     SocietiesMemberId = 4,
                     SocietyId = 2,
                     MemberId = 1,
                 },
-                new
+                new SocietiesMember
                 {
                     SocietiesMemberId = 5,
                     SocietyId = 2,
                     MemberId = 2,
                 },
-                new
+                new SocietiesMember
                 {
                     SocietiesMemberId = 6,
                     SocietyId = 3,
                     MemberId = 3,
                 },
-                new
+                new SocietiesMember
                 {
                     SocietiesMemberId = 7,
                     SocietyId = 3,
                     MemberId = 2,
                 },
-                new
+                new SocietiesMember
                 {
-                    SocietiesMemberId = 7,
+                    SocietiesMemberId = 8,
                     SocietyId = 1,
                     MemberId = 4,
                 },
-                new
+                new SocietiesMember
                 {
-                    SocietiesMemberId = 8,
+                    SocietiesMemberId = 9,
                     SocietyId = 2,
                     MemberId = 5,
 
                 },
-                new
+                new SocietiesMember
                 {
-                    SocietiesMemberId = 9,
+                    SocietiesMemberId = 10,
                     SocietyId = 3,
                     MemberId = 6,
 
                 });
 
             modelBuilder.Entity<Chairmen>().HasData(
-                new
+                new Chairmen
                 {
                     MemberId = 4,
                     Name = "Per",
@@ -287,7 +306,7 @@ namespace DABAssignment2
                     HomeAdress = "Gadevej 9",
                     CPR_number = "1234345590",
                 },
-                new
+                new Chairmen
                 {
                     MemberId = 5,
                     Name = "Per",
@@ -296,7 +315,7 @@ namespace DABAssignment2
                     HomeAdress = "Gadevej 9",
                     CPR_number = "1234567890",
                 },
-                new
+                new Chairmen
                 {
                     MemberId = 6,
                     Name = "Per",
@@ -307,7 +326,7 @@ namespace DABAssignment2
                 });
 
             modelBuilder.Entity<Location>().HasData(
-                new
+                new Location
                 {
                     LocationId = 1,
                     Name = "FootballClub",
@@ -316,7 +335,7 @@ namespace DABAssignment2
                     Address = "Stivej 3",
 
                 },
-                new
+                new Location
                 {
                     LocationId = 2,
                     Name = "ProgrammerHouse",
@@ -325,7 +344,7 @@ namespace DABAssignment2
                     Address = "Stivej 3",
 
                 },
-                new
+                new Location
                 {
                     LocationId = 3,
                     Name = "´GamerHouse",
@@ -336,36 +355,36 @@ namespace DABAssignment2
                 });
 
             modelBuilder.Entity<LocationHolidays>().HasData(
-                new
+                new LocationHolidays
                 {
                     Holiday = DateTime.Now,
                     LocationId = 1,
                 },
-                new
+                new LocationHolidays
                 {
                     Holiday = DateTime.Now,
                     LocationId = 2,
                 },
-                new
+                new LocationHolidays
                 {
                     Holiday = DateTime.Now,
                     LocationId = 3,
                 });
 
-            modelBuilder.Entity<LocationHolidays>().HasData(
-                new
+            modelBuilder.Entity<LocationOpeningHours>().HasData(
+                new LocationOpeningHours
                 {
                     Opening = DateTime.Now,
                     Closing = DateTime.Now.AddHours(1),
                     LocationId = 1,
                 },
-                new
+                new LocationOpeningHours
                 {
                     Opening = DateTime.Now,
                     Closing = DateTime.Now.AddHours(1),
                     LocationId = 2,
                 },
-                new
+                new LocationOpeningHours
                 {
                     Opening = DateTime.Now,
                     Closing = DateTime.Now.AddHours(1),
@@ -374,42 +393,42 @@ namespace DABAssignment2
 
 
             modelBuilder.Entity<Room>().HasData(
-                new
+                new Room
                 {
                     RoomId = 1,
                     LocationId = 1,
                     Capacity = 330,
                     Access_code = 123234,
                 },
-                new
+                new Room
                 {
                     RoomId = 2,
                     LocationId = 1,
                     Capacity = 340,
                     Access_code = 122134,
                 },
-                new
+                new Room
                 {
                     RoomId = 3,
                     LocationId = 2,
                     Capacity = 304,
                     Access_code = 123174,
                 },
-                new
+                new Room
                 {
                     RoomId = 4,
                     LocationId = 2,
                     Capacity = 930,
                     Access_code = 871234,
                 },
-                new
+                new Room
                 {
                     RoomId = 5,
                     LocationId = 3,
                     Capacity = 730,
                     Access_code = 178234,
                 },
-                new
+                new Room
                 {
                     RoomId = 6,
                     LocationId = 3,
@@ -418,70 +437,70 @@ namespace DABAssignment2
                 }
                 );
 
-            modelBuilder.Entity<LocationHolidays>().HasData(
-                new
+            modelBuilder.Entity<RoomHolidays>().HasData(
+                new RoomHolidays
                 {
                     Holiday = DateTime.Now,
                     RoomId = 1,
                 },
-                new
+                new RoomHolidays
                 {
                     Holiday = DateTime.Now,
                     RoomId = 2,
                 },
-                new
+                new RoomHolidays
                 {
                     Holiday = DateTime.Now,
                     RoomId = 3,
                 },
-                new
+                new RoomHolidays
                 {
                     Holiday = DateTime.Now,
                     RoomId = 4,
                 },
-                new
+                new RoomHolidays
                 {
                     Holiday = DateTime.Now,
                     RoomId = 5,
                 },
-                new
+                new RoomHolidays
                 {
                     Holiday = DateTime.Now,
                     RoomId = 6,
                 });
 
-            modelBuilder.Entity<LocationHolidays>().HasData(
-                new
+            modelBuilder.Entity<RoomOpeningHours>().HasData(
+                new RoomOpeningHours
                 {
                     Opening = DateTime.Now,
                     Closing = DateTime.Now.AddHours(1),
                     RoomId = 1,
                 },
-                new
+                new RoomOpeningHours
                 {
                     Opening = DateTime.Now,
                     Closing = DateTime.Now.AddHours(1),
                     RoomId = 2,
                 },
-                new
+                new RoomOpeningHours
                 {
                     Opening = DateTime.Now,
                     Closing = DateTime.Now.AddHours(1),
                     RoomId = 3,
                 },
-                new
+                new RoomOpeningHours
                 {
                     Opening = DateTime.Now,
                     Closing = DateTime.Now.AddHours(1),
                     RoomId = 4,
                 },
-                new
+                new RoomOpeningHours
                 {
                     Opening = DateTime.Now,
                     Closing = DateTime.Now.AddHours(1),
                     RoomId = 5,
                 },
-                new
+                new RoomOpeningHours
                 {
                     Opening = DateTime.Now,
                     Closing = DateTime.Now.AddHours(1),
@@ -491,7 +510,7 @@ namespace DABAssignment2
 
 
             modelBuilder.Entity<MembersRoomsReservations>().HasData(
-                new
+                new MembersRoomsReservations
                 {
                     MemberId = 1,
                     ReservationBegin = DateTime.Now,
@@ -499,7 +518,7 @@ namespace DABAssignment2
                     RoomId = 1,
 
                 },
-                new
+                new MembersRoomsReservations
                 {
                     MemberId = 2,
                     ReservationBegin = DateTime.Now,
@@ -507,7 +526,7 @@ namespace DABAssignment2
                     RoomId = 2,
 
                 },
-                new
+                new MembersRoomsReservations
                 {
                     MemberId = 3,
                     ReservationBegin = DateTime.Now,
@@ -515,7 +534,7 @@ namespace DABAssignment2
                     RoomId = 3,
 
                 },
-                new
+                new MembersRoomsReservations
                 {
                     MemberId = 4,
                     ReservationBegin = DateTime.Now,
@@ -523,7 +542,7 @@ namespace DABAssignment2
                     RoomId = 4,
 
                 },
-                new
+                new MembersRoomsReservations
                 {
                     MemberId = 5,
                     ReservationBegin = DateTime.Now,
@@ -531,7 +550,7 @@ namespace DABAssignment2
                     RoomId = 5,
 
                 },
-                new
+                new MembersRoomsReservations
                 {
                     MemberId = 6,
                     ReservationBegin = DateTime.Now,
@@ -541,7 +560,7 @@ namespace DABAssignment2
                 });
 
             modelBuilder.Entity<MembersLocationsReservations>().HasData(
-                new
+                new MembersLocationsReservations
                 {
                     MemberId = 1,
                     ReservationBegin = DateTime.Now,
@@ -549,7 +568,7 @@ namespace DABAssignment2
                     LocationId = 1,
 
                 },
-                new
+                new MembersLocationsReservations
                 {
                     MemberId = 2,
                     ReservationBegin = DateTime.Now,
@@ -557,7 +576,7 @@ namespace DABAssignment2
                     LocationId = 2,
 
                 },
-                new
+                new MembersLocationsReservations
                 {
                     MemberId = 3,
                     ReservationBegin = DateTime.Now,
