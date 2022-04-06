@@ -14,8 +14,7 @@ namespace DABAssignment2.QueryHelpers
             var rooms = await context.Rooms.Select(r => new
             {
                 Id = r.RoomId,
-                Address = context.Locations.Where(l => l.LocationId == r.LocationId)
-                    .Select(l => new {l.Address}).ToList(),
+                Address = r.Location.Address,
             }).ToListAsync();
 
 
