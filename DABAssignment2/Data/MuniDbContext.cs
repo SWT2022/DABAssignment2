@@ -32,9 +32,10 @@ namespace DABAssignment2
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Chairmen
-            //modelBuilder.Entity<Chairmen>().HasKey(c => new { c.CPR_number });
 
+
+
+            #region Relationships
             // Properties
             modelBuilder.Entity<Properties>().HasKey(p => new { p.PropName });
 
@@ -123,100 +124,449 @@ namespace DABAssignment2
                 .HasOne(l => l.Location)
                 .WithMany(r => r.Rooms)
                 .HasForeignKey(l => l.LocationId);
+            #endregion
+
+
+            #region Database seeding
 
 
 
-            // seeding data
-            modelBuilder.Entity<Properties>().HasData(new Properties
-                {
-                    PropName = "WiFi"
-                }
+            modelBuilder.Entity<Properties>().HasData(
+                new { PropName = "WiFi" },
+                new { PromName = "WC" },
+                new { PropName = "Coffee Machine"}
             );
 
-            modelBuilder.Entity<LocationsProperties>().HasData(new LocationsProperties
-            {
-                LocationsPropertiesId = 1,
-                LocationId = 1,
-                PropName = "WiFi",
 
-            });
+            modelBuilder.Entity<LocationsProperties>().HasData(
+                new
+                {
+                    LocationsPropertiesId = 1,
+                    LocationId = 1,
+                    PropName = "WiFi",
+                },
+                new
+                {
+                    LocationsPropertiesId = 2,
+                    LocationId = 1,
+                    PropName = "WiFi",
 
-            modelBuilder.Entity<Society>().HasData(new Society
-            {
-                SocietyId = 1,
-                Activity = "Football",
-                CVR_Number = 1234,
-                Name = "FootballFc"
-            });
+                },
+                new
+                {
+                    LocationsPropertiesId = 3,
+                    LocationId = 1,
+                    PropName = "WiFi",
+                });
 
-            modelBuilder.Entity<Member>().HasData(new Member
-            {
-                MemberId = 1,
-                Name = "Jan",
-                PhoneNumber = 12345678,
-                Email = "jan@email.com",
-
-            });
-
-            modelBuilder.Entity<SocietiesMember>().HasData(new SocietiesMember
-            {
-                SocietiesMemberId = 1,
-                SocietyId = 1,
-                MemberId = 1,
-
-            });
-
-
-            modelBuilder.Entity<Chairmen>().HasData(new Chairmen
-            {
-                MemberId = 2,
-                Name = "Per",
-                PhoneNumber = 87654321,
-                Email = "per@email.com",
-                HomeAdress = "Gadevej 9",
-                CPR_number = "1234567890",
-
-            });
-
-            modelBuilder.Entity<Location>().HasData(new Location
-            {
-                LocationId = 1,
-                Name = "FootballClub",
-                Capacity = 300,
-                Access_code = 4321,
-                Address = "Stivej 3",
-                Availability = true,
+ 
+            modelBuilder.Entity<Society>().HasData(
+                new
+                {
+                    SocietyId = 1,
+                    Activity = "Football",
+                    CVR_Number = 1234,
+                    Name = "FootballFc"
+                },
+                new
+                {
+                    SocietyId = 2,
+                    Activity = "Programming",
+                    CVR_Number = 4321,
+                    Name = "Programmers"
+                },
+                new
+                {
+                    SocietyId = 3,
+                    Activity = "Gaming",
+                    CVR_Number = 4321,
+                    Name = "Gamers"
+                }
+                );
 
 
-            });
+            modelBuilder.Entity<Member>().HasData(
+                new
+                {
+                    MemberId = 1,
+                    Name = "Jan",
+                    PhoneNumber = 12345678,
+                    Email = "jan@email.com",
 
-            modelBuilder.Entity<Room>().HasData(new Room
-            {
-                RoomId = 1,
-                LocationId = 1,
-                Capacity = 30,
-                Access_code = 1234,
-                Availability = true,
+                },
+                new
+                {
+                    MemberId = 2,
+                    Name = "Ole",
+                    PhoneNumber = 23456789,
+                    Email = "Ole@email.com",
 
-            });
+                },
+                new
+                {
+                    MemberId = 3,
+                    Name = "Jens",
+                    PhoneNumber = 98765421,
+                    Email = "Jens@email.com",
 
-            modelBuilder.Entity<MembersRoomsReservations>().HasData(new MembersRoomsReservations
-            {
-                MemberId = 1,
-                ReservationBegin = DateTime.Now,
-                ReservationEnd = DateTime.Now.AddHours(1),
-                RoomId = 1,
+                }
+                );
 
-            });
+            modelBuilder.Entity<SocietiesMember>().HasData(
+                new
+                {
+                    SocietiesMemberId = 1,
+                    SocietyId = 1,
+                    MemberId = 1,
 
-            modelBuilder.Entity<MembersLocationsReservations>().HasData(new MembersLocationsReservations
-            {
-                MemberId = 1,
-                ReservationBegin = DateTime.Now,
-                ReservationEnd = DateTime.Now.AddHours(1),
-                LocationId = 1,
+                },
+                new
+                {
+                    SocietiesMemberId = 2,
+                    SocietyId = 1,
+                    MemberId = 2,
+                },
+                new
+                {
+                    SocietiesMemberId = 3,
+                    SocietyId = 1,
+                    MemberId = 3,
+                },
+                new
+                {
+                    SocietiesMemberId = 4,
+                    SocietyId = 2,
+                    MemberId = 1,
+                },
+                new
+                {
+                    SocietiesMemberId = 5,
+                    SocietyId = 2,
+                    MemberId = 2,
+                },
+                new
+                {
+                    SocietiesMemberId = 6,
+                    SocietyId = 3,
+                    MemberId = 3,
+                },
+                new
+                {
+                    SocietiesMemberId = 7,
+                    SocietyId = 3,
+                    MemberId = 2,
+                },
+                new
+                {
+                    SocietiesMemberId = 7,
+                    SocietyId = 1,
+                    MemberId = 4,
+                },
+                new
+                {
+                    SocietiesMemberId = 8,
+                    SocietyId = 2,
+                    MemberId = 5,
 
-            });
+                },
+                new
+                {
+                    SocietiesMemberId = 9,
+                    SocietyId = 3,
+                    MemberId = 6,
+
+                });
+
+            modelBuilder.Entity<Chairmen>().HasData(
+                new
+                {
+                    MemberId = 4,
+                    Name = "Per",
+                    PhoneNumber = 87654321,
+                    Email = "per@email.com",
+                    HomeAdress = "Gadevej 9",
+                    CPR_number = "1234345590",
+                },
+                new
+                {
+                    MemberId = 5,
+                    Name = "Per",
+                    PhoneNumber = 87654321,
+                    Email = "per@email.com",
+                    HomeAdress = "Gadevej 9",
+                    CPR_number = "1234567890",
+                },
+                new
+                {
+                    MemberId = 6,
+                    Name = "Per",
+                    PhoneNumber = 87654321,
+                    Email = "per@email.com",
+                    HomeAdress = "Gadevej 9",
+                    CPR_number = "1234545690",
+                });
+
+            modelBuilder.Entity<Location>().HasData(
+                new
+                {
+                    LocationId = 1,
+                    Name = "FootballClub",
+                    Capacity = 300,
+                    Access_code = 4321,
+                    Address = "Stivej 3",
+
+                },
+                new
+                {
+                    LocationId = 2,
+                    Name = "ProgrammerHouse",
+                    Capacity = 30230,
+                    Access_code = 434321,
+                    Address = "Stivej 3",
+
+                },
+                new
+                {
+                    LocationId = 3,
+                    Name = "´GamerHouse",
+                    Capacity = 321300,
+                    Access_code = 432341,
+                    Address = "Stivej 3",
+
+                });
+
+            modelBuilder.Entity<LocationHolidays>().HasData(
+                new
+                {
+                    Holiday = DateTime.Now,
+                    LocationId = 1,
+                },
+                new
+                {
+                    Holiday = DateTime.Now,
+                    LocationId = 2,
+                },
+                new
+                {
+                    Holiday = DateTime.Now,
+                    LocationId = 3,
+                });
+
+            modelBuilder.Entity<LocationHolidays>().HasData(
+                new
+                {
+                    Opening = DateTime.Now,
+                    Closing = DateTime.Now.AddHours(1),
+                    LocationId = 1,
+                },
+                new
+                {
+                    Opening = DateTime.Now,
+                    Closing = DateTime.Now.AddHours(1),
+                    LocationId = 2,
+                },
+                new
+                {
+                    Opening = DateTime.Now,
+                    Closing = DateTime.Now.AddHours(1),
+                    LocationId = 3,
+                });
+
+
+            modelBuilder.Entity<Room>().HasData(
+                new
+                {
+                    RoomId = 1,
+                    LocationId = 1,
+                    Capacity = 330,
+                    Access_code = 123234,
+                },
+                new
+                {
+                    RoomId = 2,
+                    LocationId = 1,
+                    Capacity = 340,
+                    Access_code = 122134,
+                },
+                new
+                {
+                    RoomId = 3,
+                    LocationId = 2,
+                    Capacity = 304,
+                    Access_code = 123174,
+                },
+                new
+                {
+                    RoomId = 4,
+                    LocationId = 2,
+                    Capacity = 930,
+                    Access_code = 871234,
+                },
+                new
+                {
+                    RoomId = 5,
+                    LocationId = 3,
+                    Capacity = 730,
+                    Access_code = 178234,
+                },
+                new
+                {
+                    RoomId = 6,
+                    LocationId = 3,
+                    Capacity = 630,
+                    Access_code = 145234,
+                }
+                );
+
+            modelBuilder.Entity<LocationHolidays>().HasData(
+                new
+                {
+                    Holiday = DateTime.Now,
+                    RoomId = 1,
+                },
+                new
+                {
+                    Holiday = DateTime.Now,
+                    RoomId = 2,
+                },
+                new
+                {
+                    Holiday = DateTime.Now,
+                    RoomId = 3,
+                },
+                new
+                {
+                    Holiday = DateTime.Now,
+                    RoomId = 4,
+                },
+                new
+                {
+                    Holiday = DateTime.Now,
+                    RoomId = 5,
+                },
+                new
+                {
+                    Holiday = DateTime.Now,
+                    RoomId = 6,
+                });
+
+            modelBuilder.Entity<LocationHolidays>().HasData(
+                new
+                {
+                    Opening = DateTime.Now,
+                    Closing = DateTime.Now.AddHours(1),
+                    RoomId = 1,
+                },
+                new
+                {
+                    Opening = DateTime.Now,
+                    Closing = DateTime.Now.AddHours(1),
+                    RoomId = 2,
+                },
+                new
+                {
+                    Opening = DateTime.Now,
+                    Closing = DateTime.Now.AddHours(1),
+                    RoomId = 3,
+                },
+                new
+                {
+                    Opening = DateTime.Now,
+                    Closing = DateTime.Now.AddHours(1),
+                    RoomId = 4,
+                },
+                new
+                {
+                    Opening = DateTime.Now,
+                    Closing = DateTime.Now.AddHours(1),
+                    RoomId = 5,
+                },
+                new
+                {
+                    Opening = DateTime.Now,
+                    Closing = DateTime.Now.AddHours(1),
+                    RoomId = 6,
+                });
+
+
+
+            modelBuilder.Entity<MembersRoomsReservations>().HasData(
+                new
+                {
+                    MemberId = 1,
+                    ReservationBegin = DateTime.Now,
+                    ReservationEnd = DateTime.Now.AddHours(1),
+                    RoomId = 1,
+
+                },
+                new
+                {
+                    MemberId = 2,
+                    ReservationBegin = DateTime.Now,
+                    ReservationEnd = DateTime.Now.AddHours(1),
+                    RoomId = 2,
+
+                },
+                new
+                {
+                    MemberId = 3,
+                    ReservationBegin = DateTime.Now,
+                    ReservationEnd = DateTime.Now.AddHours(1),
+                    RoomId = 3,
+
+                },
+                new
+                {
+                    MemberId = 4,
+                    ReservationBegin = DateTime.Now,
+                    ReservationEnd = DateTime.Now.AddHours(1),
+                    RoomId = 4,
+
+                },
+                new
+                {
+                    MemberId = 5,
+                    ReservationBegin = DateTime.Now,
+                    ReservationEnd = DateTime.Now.AddHours(1),
+                    RoomId = 5,
+
+                },
+                new
+                {
+                    MemberId = 6,
+                    ReservationBegin = DateTime.Now,
+                    ReservationEnd = DateTime.Now.AddHours(1),
+                    RoomId = 6,
+
+                });
+
+            modelBuilder.Entity<MembersLocationsReservations>().HasData(
+                new
+                {
+                    MemberId = 1,
+                    ReservationBegin = DateTime.Now,
+                    ReservationEnd = DateTime.Now.AddHours(1),
+                    LocationId = 1,
+
+                },
+                new
+                {
+                    MemberId = 2,
+                    ReservationBegin = DateTime.Now,
+                    ReservationEnd = DateTime.Now.AddHours(1),
+                    LocationId = 2,
+
+                },
+                new
+                {
+                    MemberId = 3,
+                    ReservationBegin = DateTime.Now,
+                    ReservationEnd = DateTime.Now.AddHours(1),
+                    LocationId = 3,
+
+                });
+
+            #endregion
 
         }
 

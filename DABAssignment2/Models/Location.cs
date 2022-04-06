@@ -21,6 +21,7 @@ namespace DABAssignment2.Models
         [MaxLength(64)]
         public string Address { get; set; }
 
+        
         public List<MembersLocationsReservations> Reservations { get; set; }
 
 
@@ -28,7 +29,6 @@ namespace DABAssignment2.Models
 
         public List<Room> Rooms { get; set; }
 
-        public bool Availability { get; set; } 
 
         public List<LocationHolidays> Holidays { get; set; }
         public List<LocationOpeningHours> OpeningHours { get; set; }

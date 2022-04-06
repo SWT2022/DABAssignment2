@@ -20,7 +20,6 @@ namespace DABAssignment2.Models
 
         public Location Location { get; set; }
 
-        public bool Availability { get; set; }
 
         public List<MembersRoomsReservations> Reservations { get; set; }
 
