@@ -39,6 +39,9 @@ namespace DABAssignment2
             // Properties
             modelBuilder.Entity<Properties>().HasKey(p => new { p.PropName });
 
+            // RoomHolidays (one to many)
+            modelBuilder.Entity<RoomHolidays>().HasKey(lh => new { lh.Holiday, lh.RoomId });
+
             // LocationHolidays (one to many)
             modelBuilder.Entity<LocationHolidays>().HasKey(lh => new {lh.Holiday, lh.LocationId});
 
@@ -56,8 +59,7 @@ namespace DABAssignment2
                 .WithMany(l => l.OpeningHours)
                 .HasForeignKey(loh => loh.LocationId);
 
-            // RoomHolidays (one to many)
-            modelBuilder.Entity<RoomHolidays>().HasKey(lh => new { lh.Holiday, lh.RoomId });
+            
 
             modelBuilder.Entity<RoomHolidays>()
                 .HasOne(lh => lh.Room)
