@@ -15,7 +15,7 @@ namespace DABAssignment2.QueryHelpers
             {
                 Id = r.RoomId,
                 Address = context.Locations.Where(l => l.LocationId == r.LocationId)
-                    .Select(l => l.Address).ToList(),
+                    .Select(l => new {l.Address}).ToList(),
             }).ToListAsync();
 
 
