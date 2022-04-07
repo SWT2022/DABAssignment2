@@ -34,8 +34,37 @@ namespace DABAssignment2.QueryHelpers
             }
         }
 
-        public void ListSocietiesByActivity(MuniDbContext context)
+        public async void ListSocietiesByActivity(MuniDbContext context)
         {
+            //var chairmen = await context.Chairmens.Select(c => new
+            //{
+            //    address = c.HomeAdress,
+            //    CVR = c.SocietiesMembers.Select(sm => new
+            //    {
+            //        CVR = sm.Society.CVR_Number,
+            //    }).ToList(),
+            //    activity = c.SocietiesMembers.Select(sm => new
+            //    {
+            //        activity = sm.Society.Activity,
+            //    }).ToList(),
+            //    name = c.Name,
+
+            //}).ToListAsync();
+
+            var societies = await context.Societies.Select(s => new
+            {
+                cvr = s.CVR_Number,
+                activity = s.Activity,
+                name = s.SocietiesMembers.Where(sm => sm.SocietyId == s.SocietyId),
+
+            }).ToListAsync();
+
+            Console.WriteLine("Societies:");
+            foreach (var society in societies)
+            {
+
+                Console.WriteLine($"Activity: {society.activity} CVR: {society.cvr}");
+            }
 
         }
 
