@@ -4,6 +4,7 @@ using DABAssignment2;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DABAssignment2.Migrations
 {
     [DbContext(typeof(MuniDbContext))]
-    partial class MuniDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220407110500_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,17 +96,17 @@ namespace DABAssignment2.Migrations
                     b.HasData(
                         new
                         {
-                            Holiday = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1330),
+                            Holiday = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8274),
                             LocationId = 1L
                         },
                         new
                         {
-                            Holiday = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1369),
+                            Holiday = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8320),
                             LocationId = 2L
                         },
                         new
                         {
-                            Holiday = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1372),
+                            Holiday = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8323),
                             LocationId = 3L
                         });
                 });
@@ -129,20 +131,20 @@ namespace DABAssignment2.Migrations
                     b.HasData(
                         new
                         {
-                            Opening = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1386),
-                            Closing = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1388),
+                            Opening = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8351),
+                            Closing = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8353),
                             LocationId = 1L
                         },
                         new
                         {
-                            Opening = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1391),
-                            Closing = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1393),
+                            Opening = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8357),
+                            Closing = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8359),
                             LocationId = 2L
                         },
                         new
                         {
-                            Opening = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1395),
-                            Closing = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1397),
+                            Opening = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8362),
+                            Closing = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8364),
                             LocationId = 3L
                         });
                 });
@@ -288,22 +290,22 @@ namespace DABAssignment2.Migrations
                         new
                         {
                             LocationId = 1L,
-                            ReservationBegin = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1525),
-                            ReservationEnd = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1527),
+                            ReservationBegin = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8573),
+                            ReservationEnd = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8576),
                             MemberId = 1L
                         },
                         new
                         {
                             LocationId = 2L,
-                            ReservationBegin = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1530),
-                            ReservationEnd = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1531),
+                            ReservationBegin = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8580),
+                            ReservationEnd = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8582),
                             MemberId = 2L
                         },
                         new
                         {
                             LocationId = 3L,
-                            ReservationBegin = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1534),
-                            ReservationEnd = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1535),
+                            ReservationBegin = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8585),
+                            ReservationEnd = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8587),
                             MemberId = 3L
                         });
                 });
@@ -332,43 +334,43 @@ namespace DABAssignment2.Migrations
                         new
                         {
                             RoomId = 1L,
-                            ReservationBegin = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1489),
-                            ReservationEnd = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1491),
+                            ReservationBegin = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8520),
+                            ReservationEnd = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8523),
                             MemberId = 1L
                         },
                         new
                         {
                             RoomId = 2L,
-                            ReservationBegin = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1494),
-                            ReservationEnd = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1496),
+                            ReservationBegin = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8527),
+                            ReservationEnd = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8529),
                             MemberId = 2L
                         },
                         new
                         {
                             RoomId = 3L,
-                            ReservationBegin = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1498),
-                            ReservationEnd = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1500),
+                            ReservationBegin = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8532),
+                            ReservationEnd = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8534),
                             MemberId = 3L
                         },
                         new
                         {
                             RoomId = 4L,
-                            ReservationBegin = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1502),
-                            ReservationEnd = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1504),
+                            ReservationBegin = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8537),
+                            ReservationEnd = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8539),
                             MemberId = 4L
                         },
                         new
                         {
                             RoomId = 5L,
-                            ReservationBegin = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1506),
-                            ReservationEnd = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1508),
+                            ReservationBegin = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8542),
+                            ReservationEnd = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8544),
                             MemberId = 5L
                         },
                         new
                         {
                             RoomId = 6L,
-                            ReservationBegin = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1510),
-                            ReservationEnd = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1512),
+                            ReservationBegin = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8546),
+                            ReservationEnd = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8549),
                             MemberId = 6L
                         });
                 });
@@ -483,32 +485,32 @@ namespace DABAssignment2.Migrations
                     b.HasData(
                         new
                         {
-                            Holiday = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1426),
+                            Holiday = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8416),
                             RoomId = 1L
                         },
                         new
                         {
-                            Holiday = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1428),
+                            Holiday = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8419),
                             RoomId = 2L
                         },
                         new
                         {
-                            Holiday = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1431),
+                            Holiday = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8422),
                             RoomId = 3L
                         },
                         new
                         {
-                            Holiday = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1433),
+                            Holiday = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8424),
                             RoomId = 4L
                         },
                         new
                         {
-                            Holiday = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1435),
+                            Holiday = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8427),
                             RoomId = 5L
                         },
                         new
                         {
-                            Holiday = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1437),
+                            Holiday = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8429),
                             RoomId = 6L
                         });
                 });
@@ -533,38 +535,38 @@ namespace DABAssignment2.Migrations
                     b.HasData(
                         new
                         {
-                            Opening = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1452),
-                            Closing = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1455),
+                            Opening = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8456),
+                            Closing = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8458),
                             RoomId = 1L
                         },
                         new
                         {
-                            Opening = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1457),
-                            Closing = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1459),
+                            Opening = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8462),
+                            Closing = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8464),
                             RoomId = 2L
                         },
                         new
                         {
-                            Opening = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1461),
-                            Closing = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1463),
+                            Opening = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8467),
+                            Closing = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8469),
                             RoomId = 3L
                         },
                         new
                         {
-                            Opening = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1465),
-                            Closing = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1467),
+                            Opening = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8472),
+                            Closing = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8475),
                             RoomId = 4L
                         },
                         new
                         {
-                            Opening = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1469),
-                            Closing = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1471),
+                            Opening = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8486),
+                            Closing = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8489),
                             RoomId = 5L
                         },
                         new
                         {
-                            Opening = new DateTime(2022, 4, 7, 14, 7, 20, 848, DateTimeKind.Local).AddTicks(1473),
-                            Closing = new DateTime(2022, 4, 7, 15, 7, 20, 848, DateTimeKind.Local).AddTicks(1474),
+                            Opening = new DateTime(2022, 4, 7, 13, 4, 59, 197, DateTimeKind.Local).AddTicks(8492),
+                            Closing = new DateTime(2022, 4, 7, 14, 4, 59, 197, DateTimeKind.Local).AddTicks(8494),
                             RoomId = 6L
                         });
                 });
@@ -667,11 +669,6 @@ namespace DABAssignment2.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
                     b.Property<long>("CVR_Number")
                         .HasColumnType("bigint");
 
@@ -689,7 +686,6 @@ namespace DABAssignment2.Migrations
                         {
                             SocietyId = 1L,
                             Activity = "Football",
-                            Address = "Aarhusvej 10",
                             CVR_Number = 1234L,
                             Name = "FootballFc"
                         },
@@ -697,7 +693,6 @@ namespace DABAssignment2.Migrations
                         {
                             SocietyId = 2L,
                             Activity = "Programming",
-                            Address = "Aarhusvej 12",
                             CVR_Number = 4321L,
                             Name = "Programmers"
                         },
@@ -705,7 +700,6 @@ namespace DABAssignment2.Migrations
                         {
                             SocietyId = 3L,
                             Activity = "Gaming",
-                            Address = "Aarhusvej 14",
                             CVR_Number = 4321L,
                             Name = "Gamers"
                         });

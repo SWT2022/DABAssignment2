@@ -13,7 +13,8 @@ namespace DABAssignment2
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("<Insert Connection String>");
+
+            optionsBuilder.UseSqlServer("TrustServerCertificate=true; Data Source=localhost; Initial Catalog=Muni; Persist Security Info=True; User ID=sa;Password=<YourStrong@Passw0rd>;");
         }
 
         //public DbSet<Municipality> Municipalities { get; set; }
@@ -29,6 +30,8 @@ namespace DABAssignment2
         public DbSet<Properties> Properties { get; set; }
 
         public DbSet<Room> Rooms { get; set; }
+
+        public DbSet<SocietiesMember> SocietiesMember { get; set; }
 
         public DbSet<MembersLocationsReservations> MembersLocationsReservations { get; set; }
 
@@ -191,21 +194,24 @@ namespace DABAssignment2
                     SocietyId = 1,
                     Activity = "Football",
                     CVR_Number = 1234,
-                    Name = "FootballFc"
+                    Name = "FootballFc",
+                    Address = "Aarhusvej 10"
                 },
                 new Society
                 {
                     SocietyId = 2,
                     Activity = "Programming",
                     CVR_Number = 4321,
-                    Name = "Programmers"
+                    Name = "Programmers",
+                    Address = "Aarhusvej 12"
                 },
                 new Society
                 {
                     SocietyId = 3,
                     Activity = "Gaming",
                     CVR_Number = 4321,
-                    Name = "Gamers"
+                    Name = "Gamers",
+                    Address = "Aarhusvej 14"
                 }
                 );
 
@@ -217,6 +223,7 @@ namespace DABAssignment2
                     Name = "Jan",
                     PhoneNumber = 12345678,
                     Email = "jan@email.com",
+     
 
                 },
                 new Member
@@ -225,7 +232,7 @@ namespace DABAssignment2
                     Name = "Ole",
                     PhoneNumber = 23456789,
                     Email = "Ole@email.com",
-
+   
                 },
                 new Member
                 {
@@ -233,7 +240,7 @@ namespace DABAssignment2
                     Name = "Jens",
                     PhoneNumber = 98765421,
                     Email = "Jens@email.com",
-
+  
                 }
                 );
 
@@ -305,8 +312,9 @@ namespace DABAssignment2
             modelBuilder.Entity<Chairmen>().HasData(
                 new Chairmen
                 {
+
                     MemberId = 4,
-                    Name = "Per",
+                    Name = "Per1",
                     PhoneNumber = 87654321,
                     Email = "per@email.com",
                     HomeAdress = "Gadevej 9",
@@ -315,19 +323,19 @@ namespace DABAssignment2
                 new Chairmen
                 {
                     MemberId = 5,
-                    Name = "Per",
+                    Name = "Per2",
                     PhoneNumber = 87654321,
                     Email = "per@email.com",
-                    HomeAdress = "Gadevej 9",
+                    HomeAdress = "Gadevej 10",
                     CPR_number = "1234567890",
                 },
                 new Chairmen
                 {
                     MemberId = 6,
-                    Name = "Per",
+                    Name = "Per3",
                     PhoneNumber = 87654321,
                     Email = "per@email.com",
-                    HomeAdress = "Gadevej 9",
+                    HomeAdress = "Gadevej 11",
                     CPR_number = "1234545690",
                 });
 

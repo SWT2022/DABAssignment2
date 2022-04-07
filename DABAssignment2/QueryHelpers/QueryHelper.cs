@@ -52,11 +52,32 @@ namespace DABAssignment2.QueryHelpers
 
             //}).ToListAsync();
 
-            var societies = await context.Societies.Select(s => new
+            //var societies = await context.Chairmens.Select(c => new
+            //{
+            //    cvr = c.SocietiesMembers.Where(sm => sm.MemberId == c.MemberId).Select(sm => new
+            //    {
+            //        cvr = sm.Society.CVR_Number,
+            //    }).FirstOrDefault(),
+
+            //    activity = c.SocietiesMembers.Where(sm => sm.MemberId == c.MemberId).Select(sm => new
+            //    {
+            //        activity = sm.Society.Activity,
+            //    }).FirstOrDefault(),
+            //    name = c.Name,
+            //    address = c.HomeAdress,
+
+            //}).ToListAsync();
+
+            var societies = await context.Societies.OrderBy(s => s.Activity).Select(s => new
             {
+                name = s.SocietiesMembers.Where(sm => sm.SocietyId == s.SocietyId).Select(sm => new
+                {
+                    name = sm.Member.Name,
+                }).FirstOrDefault(),
+
                 cvr = s.CVR_Number,
-                activity = s.Activity,
-                name = s.SocietiesMembers.Where(sm => sm.SocietyId == s.SocietyId),
+                address = s.Address,
+                activity = s.Activity
 
             }).ToListAsync();
 
@@ -64,7 +85,8 @@ namespace DABAssignment2.QueryHelpers
             foreach (var society in societies)
             {
 
-                Console.WriteLine($"Activity: {society.activity} CVR: {society.cvr}");
+                Console.WriteLine($"Activity: {society.activity} CVR: {society.cvr}" +
+                    $" Address: {society.address} name: {society.name.name}");
             }
 
         }

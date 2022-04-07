@@ -17,6 +17,9 @@ namespace DABAssignment2.Models
         [MaxLength(64)]
         public string Activity { get; set; }
 
+        [MaxLength(64)]
+        public string Address { get; set; }
+
         public long CVR_Number { get; set; }
 
 

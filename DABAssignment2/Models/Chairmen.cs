@@ -10,7 +10,9 @@ namespace DABAssignment2.Models
     public class Chairmen : Member
     {
         [MaxLength(10)]
+
         public string CPR_number { get; set; }
+
 
         [MaxLength(64)]
         public string HomeAdress { get; set; }
