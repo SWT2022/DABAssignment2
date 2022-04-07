@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace DABAssignment2
 {
@@ -12,8 +13,7 @@ namespace DABAssignment2
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                "TrustServerCertificate=true; Data Source=localhost; Initial Catalog=Muni; Persist Security Info=True; User ID=sa;Password=<YourStrong@Passw0rd>;");
+            optionsBuilder.UseSqlServer("<Insert Connection String>");
         }
 
         //public DbSet<Municipality> Municipalities { get; set; }
@@ -29,6 +29,10 @@ namespace DABAssignment2
         public DbSet<Properties> Properties { get; set; }
 
         public DbSet<Room> Rooms { get; set; }
+
+        public DbSet<MembersLocationsReservations> MembersLocationsReservations { get; set; }
+
+        public DbSet<MembersRoomsReservations> MembersRoomsReservations { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
