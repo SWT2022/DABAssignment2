@@ -93,24 +93,6 @@ namespace DABAssignment2.QueryHelpers
 
         public async void ListBookings(MuniDbContext context)
         {
-            // Get all room Ids and their address
-            //var rooms = await context.Rooms.Select(r => new
-            //{
-            //    Id = r.RoomId,
-            //    Address = r.Location.Address,
-            //}).ToListAsync();
-
-            //// Dont think works
-            //var societies = await context.Societies.Select(s => new
-            //{
-            //    Name = s.Name,
-            //    Members = s.SocietiesMembers.Where(sm => sm.SocietyId == s.SocietyId)
-            //        .Select(sm => new
-            //    {
-            //            Member = sm.Member,
-            //    }).ToList(),
-            //}).ToListAsync();
-
             var reservations = await context.MembersRoomsReservations.Select(mrr => new
             {
                 startTime = mrr.ReservationBegin,
@@ -121,13 +103,18 @@ namespace DABAssignment2.QueryHelpers
                 {
                     SocietyName = sm.Society.Name,
                 }).FirstOrDefault(),
+                Chairman = context.Chairmens
+                    .Where(c => c.SocietiesMembers.Select(sm => sm.SocietyId).FirstOrDefault() == 
+                                mrr.Member.SocietiesMembers.Select(sm => sm.SocietyId).FirstOrDefault())
+                    .Select(m => new {Chairman = m.Name}).FirstOrDefault(),
                 Reserver = mrr.Member.Name,
             }).ToListAsync();
 
             foreach (var reservation in reservations)
             {
-                Console.WriteLine($"Room with Id {reservation.RoomId} at address {reservation.RoomAddress} is reserved in the" +
-                                  $" between {reservation.startTime} - {reservation.endTime} by {reservation.SocietyName.SocietyName}. " +
+                Console.WriteLine($"Room with Id {reservation.RoomId} at address {reservation.RoomAddress} is reserved" +
+                                  $" between {reservation.startTime} - {reservation.endTime} by {reservation.SocietyName.SocietyName} " +
+                                  $"whose chairman is {reservation.Chairman.Chairman}. " +
                                   $"Reservation was made by {reservation.Reserver}");
             }
         }

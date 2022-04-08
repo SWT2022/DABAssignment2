@@ -14,7 +14,7 @@ namespace DABAssignment2
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer("TrustServerCertificate=true; Data Source=localhost; Initial Catalog=Muni; Persist Security Info=True; User ID=sa;Password=<YourStrong@Passw0rd>;");
+            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=DAB_Assignment2;Persist Security Info=True;User ID=SA;Password=Docker_Jacob#7953;TrustServerCertificate=True");
         }
 
         //public DbSet<Municipality> Municipalities { get; set; }
