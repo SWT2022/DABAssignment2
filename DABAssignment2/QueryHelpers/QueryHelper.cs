@@ -1,10 +1,11 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using DABAssignment2.Models;
-//using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using DABAssignment2.Models;
+using Microsoft.EntityFrameworkCore;
 
 //namespace DABAssignment2.QueryHelpers
 //{
@@ -90,59 +91,56 @@
 
 //            }).ToListAsync();
 
-            
+            //}).ToListAsync();
 
+            var societies = await context.Societies.OrderBy(s => s.Activity).Select(s => new
+            {
+                CVR = s.CVR_Number,
+                Address = s.Address,
+                Activity = s.Activity,
+                Chairman = s.SocietiesMembers.Where(sm => sm.Member is Chairmen)
+                    .Select(sm => sm.Member.Name).FirstOrDefault(),
+            }).ToListAsync();
 
-
-//            Console.WriteLine("Societies:");
-//            foreach (var society in societies)
-//            {
-
-//                Console.WriteLine($"Activity: {society.activity} CVR: {society.cvr}" +
-//                    $" Address: {society.address} name: {society.name.name}");
-//            }
+            Console.WriteLine("Societies:");
+            foreach (var society in societies)
+            {
+                Console.WriteLine($"Activity: {society.Activity} CVR: {society.CVR}" +
+                                  $" Address: {society.Address} name: {society.Chairman}");
+            }
 
 //        }
 
-//        public async void ListBookings(MuniDbContext context)
-//        {
-//            // Get all room Ids and their address
-//            //var rooms = await context.Rooms.Select(r => new
-//            //{
-//            //    Id = r.RoomId,
-//            //    Address = r.Location.Address,
-//            //}).ToListAsync();
+        public async void ListBookings(MuniDbContext context)
+        {
+            var reservations = await context.MembersRoomsReservations.Select(mrr => new
+            {
+                startTime = mrr.ReservationBegin,
+                endTime = mrr.ReservationEnd,
+                RoomAddress = mrr.Room.Location.Address,
+                RoomId = mrr.Room.RoomId,
+                SocietyName = mrr.Member.SocietiesMembers.Where(sm => sm.MemberId == mrr.MemberId).Select(sm => new
+                {
+                    SocietyName = sm.Society.Name,
+                }).FirstOrDefault(),
+                Chairman = mrr.Member.SocietiesMembers.Where(sm => sm.Member is Chairmen)
+                    .Select(sm => sm.Member.Name).FirstOrDefault(),
 
-//            //// Dont think works
-//            //var societies = await context.Societies.Select(s => new
-//            //{
-//            //    Name = s.Name,
-//            //    Members = s.SocietiesMembers.Where(sm => sm.SocietyId == s.SocietyId)
-//            //        .Select(sm => new
-//            //    {
-//            //            Member = sm.Member,
-//            //    }).ToList(),
-//            //}).ToListAsync();
+                Reserver = mrr.Member.Name,
+            }).ToListAsync();
 
-//            var reservations = await context.MembersRoomsReservations.Select(mrr => new
-//            {
-//                startTime = mrr.ReservationBegin,
-//                endTime = mrr.ReservationEnd,
-//                RoomAddress = mrr.Room.Location.Address,
-//                RoomId = mrr.Room.RoomId,
-//                SocietyName = mrr.Member.SocietiesMembers.Where(sm => sm.MemberId == mrr.MemberId).Select(sm => new
-//                {
-//                    SocietyName = sm.Society.Name,
-//                }).FirstOrDefault(),
-//                Reserver = mrr.Member.Name,
-//            }).ToListAsync();
+            foreach (var reservation in reservations)
+            {
+                Console.WriteLine($"Room with Id {reservation.RoomId} at address {reservation.RoomAddress} is reserved" +
+                                  $" between {reservation.startTime} - {reservation.endTime} by {reservation.SocietyName.SocietyName} " +
+                                  $"whose chairman is " + (reservation.Chairman != null ? reservation.Chairman : "non existing.") +
+                                  $" Reservation was made by {reservation.Reserver}\n");
+            }
+        }
 
-//            foreach (var reservation in reservations)
-//            {
-//                Console.WriteLine($"Room with Id {reservation.RoomId} at address {reservation.RoomAddress} is reserved in the" +
-//                                  $" between {reservation.startTime} - {reservation.endTime} by {reservation.SocietyName.SocietyName}. " +
-//                                  $"Reservation was made by {reservation.Reserver}");
-//            }
-//        }
-//    }
-//}
+        public async void ListFutureBookings(MuniDbContext context)
+        {
+            var futureBookings = await context.
+        }
+    }
+}

@@ -40,9 +40,10 @@ Console.WriteLine("Welcome to the Municipalicy's building administration\n");
 //                break;
 //        }
 
-//        Console.WriteLine("Type any key to continue");
-//        Console.ReadKey();
-//    }
+        Thread.Sleep(1000);
+        Console.WriteLine("Type any key to continue");
+        Console.ReadKey();
+    }
 
 //}
 
