@@ -14,11 +14,13 @@ namespace DABAssignment2.Models
 
         public int Capacity { get; set; }
 
-        public int Access_code { get; set; }
+        public int? Access_code { get; set; }
 
         public long LocationId { get; set; }
 
         public Location Location { get; set; }
+
+        public string? Key_Address { get; set; }
 
 
         public List<MembersRoomsReservations> Reservations { get; set; }

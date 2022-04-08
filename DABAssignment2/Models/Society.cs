@@ -22,8 +22,11 @@ namespace DABAssignment2.Models
 
         public long CVR_Number { get; set; }
 
+        public Member Member { get; set; }
 
-        public List<SocietiesMember> SocietiesMembers { get; set; }
+        public long MemberId { get; set; }
+
+       
 
     }
 }

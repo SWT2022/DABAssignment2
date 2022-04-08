@@ -31,7 +31,7 @@ namespace DABAssignment2
 
         public DbSet<Room> Rooms { get; set; }
 
-        public DbSet<SocietiesMember> SocietiesMember { get; set; }
+        //public DbSet<SocietiesMember> SocietiesMember { get; set; }
 
         public DbSet<MembersLocationsReservations> MembersLocationsReservations { get; set; }
 
@@ -108,15 +108,15 @@ namespace DABAssignment2
                 .WithMany(m => m.RoomsReservations)
                 .HasForeignKey(mlr => mlr.MemberId);
 
-            // SocietiesMembers (many to many)
-            modelBuilder.Entity<SocietiesMember>()
-                .HasOne(sm => sm.Society)
-                .WithMany(s => s.SocietiesMembers)
-                .HasForeignKey(sm => sm.SocietyId);
-            modelBuilder.Entity<SocietiesMember>()
-                .HasOne(sm => sm.Member)
-                .WithMany(m => m.SocietiesMembers)
-                .HasForeignKey(sm => sm.MemberId);
+            //// SocietiesMembers (many to many)
+            //modelBuilder.Entity<SocietiesMember>()
+            //    .HasOne(sm => sm.Society)
+            //    .WithMany(s => s.SocietiesMembers)
+            //    .HasForeignKey(sm => sm.SocietyId);
+            //modelBuilder.Entity<SocietiesMember>()
+            //    .HasOne(sm => sm.Member)
+            //    .WithMany(m => m.SocietiesMembers)
+            //    .HasForeignKey(sm => sm.MemberId);
 
             // LocationsProperties (many to many)
             modelBuilder.Entity<LocationsProperties>()
@@ -133,6 +133,12 @@ namespace DABAssignment2
                 .HasOne(l => l.Location)
                 .WithMany(r => r.Rooms)
                 .HasForeignKey(l => l.LocationId);
+
+            modelBuilder.Entity<Society>()
+                .HasOne(m => m.Member)
+                .WithMany(l => l.Societies)
+                .HasForeignKey(m => m.MemberId);
+
             #endregion
 
 
@@ -191,6 +197,7 @@ namespace DABAssignment2
             modelBuilder.Entity<Society>().HasData(
                 new Society
                 {
+                    MemberId = 1,
                     SocietyId = 1,
                     Activity = "Football",
                     CVR_Number = 1234,
@@ -199,6 +206,7 @@ namespace DABAssignment2
                 },
                 new Society
                 {
+                    MemberId = 2,
                     SocietyId = 2,
                     Activity = "Programming",
                     CVR_Number = 4321,
@@ -207,6 +215,7 @@ namespace DABAssignment2
                 },
                 new Society
                 {
+                    MemberId = 3,
                     SocietyId = 3,
                     Activity = "Gaming",
                     CVR_Number = 4321,
@@ -219,6 +228,8 @@ namespace DABAssignment2
             modelBuilder.Entity<Member>().HasData(
                 new Member
                 {
+                    HomeAddress = "Aarhusvej 90",
+                    IdentityNumber = 1234564,
                     MemberId = 1,
                     Name = "Jan",
                     PhoneNumber = 12345678,
@@ -228,14 +239,18 @@ namespace DABAssignment2
                 },
                 new Member
                 {
+                    HomeAddress = "SesameStreet 12413",
+                    IdentityNumber = 2142534635,
                     MemberId = 2,
                     Name = "Ole",
                     PhoneNumber = 23456789,
                     Email = "Ole@email.com",
-   
+
                 },
                 new Member
                 {
+                    HomeAddress = "Randersvej 124",
+                    IdentityNumber = 1234251,
                     MemberId = 3,
                     Name = "Jens",
                     PhoneNumber = 98765421,
@@ -244,70 +259,70 @@ namespace DABAssignment2
                 }
                 );
 
-            modelBuilder.Entity<SocietiesMember>().HasData(
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 1,
-                    SocietyId = 1,
-                    MemberId = 1,
+            //modelBuilder.Entity<SocietiesMember>().HasData(
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 1,
+            //        SocietyId = 1,
+            //        MemberId = 1,
 
-                },
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 2,
-                    SocietyId = 1,
-                    MemberId = 2,
-                },
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 3,
-                    SocietyId = 1,
-                    MemberId = 3,
-                },
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 4,
-                    SocietyId = 2,
-                    MemberId = 1,
-                },
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 5,
-                    SocietyId = 2,
-                    MemberId = 2,
-                },
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 6,
-                    SocietyId = 3,
-                    MemberId = 3,
-                },
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 7,
-                    SocietyId = 3,
-                    MemberId = 2,
-                },
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 8,
-                    SocietyId = 1,
-                    MemberId = 4,
-                },
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 9,
-                    SocietyId = 2,
-                    MemberId = 5,
+            //    },
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 2,
+            //        SocietyId = 1,
+            //        MemberId = 2,
+            //    },
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 3,
+            //        SocietyId = 1,
+            //        MemberId = 3,
+            //    },
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 4,
+            //        SocietyId = 2,
+            //        MemberId = 1,
+            //    },
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 5,
+            //        SocietyId = 2,
+            //        MemberId = 2,
+            //    },
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 6,
+            //        SocietyId = 3,
+            //        MemberId = 3,
+            //    },
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 7,
+            //        SocietyId = 3,
+            //        MemberId = 2,
+            //    },
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 8,
+            //        SocietyId = 1,
+            //        MemberId = 4,
+            //    },
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 9,
+            //        SocietyId = 2,
+            //        MemberId = 5,
 
-                },
-                new SocietiesMember
-                {
-                    SocietiesMemberId = 10,
-                    SocietyId = 3,
-                    MemberId = 6,
+            //    },
+            //    new SocietiesMember
+            //    {
+            //        SocietiesMemberId = 10,
+            //        SocietyId = 3,
+            //        MemberId = 6,
 
-                });
+            //    });
 
             modelBuilder.Entity<Chairmen>().HasData(
                 new Chairmen
@@ -317,7 +332,7 @@ namespace DABAssignment2
                     Name = "Per1",
                     PhoneNumber = 87654321,
                     Email = "per@email.com",
-                    HomeAdress = "Gadevej 9",
+                    HomeAddress = "Gadevej 9",
                     CPR_number = "1234345590",
                 },
                 new Chairmen
@@ -326,7 +341,7 @@ namespace DABAssignment2
                     Name = "Per2",
                     PhoneNumber = 87654321,
                     Email = "per@email.com",
-                    HomeAdress = "Gadevej 10",
+                    HomeAddress = "Gadevej 10",
                     CPR_number = "1234567890",
                 },
                 new Chairmen
@@ -335,22 +350,25 @@ namespace DABAssignment2
                     Name = "Per3",
                     PhoneNumber = 87654321,
                     Email = "per@email.com",
-                    HomeAdress = "Gadevej 11",
+                    HomeAddress = "Gadevej 11",
                     CPR_number = "1234545690",
                 });
 
             modelBuilder.Entity<Location>().HasData(
                 new Location
                 {
+                    Key_Address = "Horsesvej 1253262",
+                   
                     LocationId = 1,
                     Name = "FootballClub",
                     Capacity = 300,
-                    Access_code = 4321,
+                    Access_code = null,
                     Address = "Stivej 3",
 
                 },
                 new Location
                 {
+                    Key_Address = null,
                     LocationId = 2,
                     Name = "ProgrammerHouse",
                     Capacity = 30230,
@@ -360,6 +378,7 @@ namespace DABAssignment2
                 },
                 new Location
                 {
+                    Key_Address = null,
                     LocationId = 3,
                     Name = "´GamerHouse",
                     Capacity = 321300,
@@ -409,17 +428,19 @@ namespace DABAssignment2
             modelBuilder.Entity<Room>().HasData(
                 new Room
                 {
+                    Key_Address = "Finlandsgade 123",
                     RoomId = 1,
                     LocationId = 1,
                     Capacity = 330,
-                    Access_code = 123234,
+                    Access_code = null,
                 },
                 new Room
                 {
+                    Key_Address = "ParkAvenue 123",
                     RoomId = 2,
                     LocationId = 1,
                     Capacity = 340,
-                    Access_code = 122134,
+                    Access_code = null,
                 },
                 new Room
                 {

@@ -13,8 +13,5 @@ namespace DABAssignment2.Models
 
         public string CPR_number { get; set; }
 
-
-        [MaxLength(64)]
-        public string HomeAdress { get; set; }
     }
 }

@@ -16,7 +16,10 @@ namespace DABAssignment2.Models
 
         public int Capacity { get; set; }
 
-        public int Access_code { get; set; }
+
+        public int? Access_code { get; set; }
+
+        public string? Key_Address { get; set; }
 
         [MaxLength(64)]
         public string Address { get; set; }
