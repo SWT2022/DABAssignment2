@@ -15,7 +15,7 @@ using (var context = new MuniDbContext())
                       "Get all the rooms and their addresses 'R/r' | \n" +
                       "Get all the societies and their information and sort them by activity 'S/s' | \n" +
                       "Get a list of booked rooms, with the booking society and the times it's booked 'B/b' | \n" +
-                      "Get a list of future bookings and the rooms access specifications 'F/f' | \n" +
+                      "Get a list of future room bookings and the rooms access specifications 'F/f' | \n" +
                       "Terminate the program 'Q/q'");
     while (flag)
     {
