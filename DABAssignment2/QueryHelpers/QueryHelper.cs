@@ -7,89 +7,89 @@ using System.Threading.Tasks;
 using DABAssignment2.Models;
 using Microsoft.EntityFrameworkCore;
 
-//namespace DABAssignment2.QueryHelpers
-//{
-//    public class QueryHelper
-//    {
-//        public async void ListRoomsNAddresses(MuniDbContext context)
-//        {
-//            var rooms = await context.Rooms.Select(r => new
-//            {
-//                Id = r.RoomId,
-//                Address = r.Location.Address,
-//            }).ToListAsync();
+namespace DABAssignment2.QueryHelpers
+{
+    public class QueryHelper
+    {
+        public async void ListRoomsNAddresses(MuniDbContext context)
+        {
+            var rooms = await context.Rooms.Select(r => new
+            {
+                Id = r.RoomId,
+                Address = r.Location.Address,
+            }).ToListAsync();
 
 
-//            var locations = await context.Locations.ToListAsync();
+            var locations = await context.Locations.ToListAsync();
 
-//            Console.WriteLine("Rooms:");
-//            foreach (var room in rooms)
-//            {
+            Console.WriteLine("Rooms:");
+            foreach (var room in rooms)
+            {
 
-//                Console.WriteLine($"Id: {room.Id} Address: {room.Address}");
-//            }
+                Console.WriteLine($"Id: {room.Id} Address: {room.Address}");
+            }
 
-//            Console.WriteLine("Locations:");
-//            foreach (var location in locations)
-//            {
-//                Console.WriteLine($"Name: {location.Name} Address: {location.Address}");
-//            }
-//        }
+            Console.WriteLine("Locations:");
+            foreach (var location in locations)
+            {
+                Console.WriteLine($"Name: {location.Name} Address: {location.Address}");
+            }
+        }
 
-//        public async void ListSocietiesByActivity(MuniDbContext context)
-//        {
-//            //var chairmen = await context.Chairmens.Select(c => new
-//            //{
-//            //    address = c.HomeAdress,
-//            //    CVR = c.SocietiesMembers.Select(sm => new
-//            //    {
-//            //        CVR = sm.Society.CVR_Number,
-//            //    }).ToList(),
-//            //    activity = c.SocietiesMembers.Select(sm => new
-//            //    {
-//            //        activity = sm.Society.Activity,
-//            //    }).ToList(),
-//            //    name = c.Name,
+        public async void ListSocietiesByActivity(MuniDbContext context)
+        {
+            //var chairmen = await context.Chairmens.Select(c => new
+            //{
+            //    address = c.HomeAdress,
+            //    CVR = c.SocietiesMembers.Select(sm => new
+            //    {
+            //        CVR = sm.Society.CVR_Number,
+            //    }).ToList(),
+            //    activity = c.SocietiesMembers.Select(sm => new
+            //    {
+            //        activity = sm.Society.Activity,
+            //    }).ToList(),
+            //    name = c.Name,
 
-//            //}).ToListAsync();
+            //}).ToListAsync();
 
-//            //var societies = await context.Chairmens.Select(c => new
-//            //{
-//            //    cvr = c.SocietiesMembers.Where(sm => sm.MemberId == c.MemberId).Select(sm => new
-//            //    {
-//            //        cvr = sm.Society.CVR_Number,
-//            //    }).FirstOrDefault(),
+            //var societies = await context.Chairmens.Select(c => new
+            //{
+            //    cvr = c.SocietiesMembers.Where(sm => sm.MemberId == c.MemberId).Select(sm => new
+            //    {
+            //        cvr = sm.Society.CVR_Number,
+            //    }).FirstOrDefault(),
 
-//            //    activity = c.SocietiesMembers.Where(sm => sm.MemberId == c.MemberId).Select(sm => new
-//            //    {
-//            //        activity = sm.Society.Activity,
-//            //    }).FirstOrDefault(),
-//            //    name = c.Name,
-//            //    address = c.HomeAdress,
+            //    activity = c.SocietiesMembers.Where(sm => sm.MemberId == c.MemberId).Select(sm => new
+            //    {
+            //        activity = sm.Society.Activity,
+            //    }).FirstOrDefault(),
+            //    name = c.Name,
+            //    address = c.HomeAdress,
 
-//            //}).ToListAsync();
+            //}).ToListAsync();
 
-//            var chairmen = await context.Chairmens.Select(c => new
-//            {
-//                name = c.SocietiesMembers.Where(sm => sm.MemberId == c.MemberId),
-//            }).ToListAsync();
+            var chairmen = await context.Chairmens.Select(c => new
+            {
+                name = c.SocietiesMembers.Where(sm => sm.MemberId == c.MemberId),
+            }).ToListAsync();
 
-//            var societies = await context.Societies.OrderBy(s => s.Activity).Select(s => new
-//            {
-//                name = s.SocietiesMembers.Where(sm => sm.MemberId == s.Society).Select(sm => new
-//                {
-//                    name = sm.Member.Name,
-//                }).FirstOrDefault(),
-//                //name = s.SocietiesMembers.Where(sm => sm.SocietyId == s.SocietyId).Select(sm => new
-//                //{
-//                //    name = sm.Member.Name,
-//                //}).FirstOrDefault(),
+            var societies = await context.Societies.OrderBy(s => s.Activity).Select(s => new
+            {
+                name = s.SocietiesMembers.Where(sm => sm.MemberId == s.Society).Select(sm => new
+                {
+                    name = sm.Member.Name,
+                }).FirstOrDefault(),
+                //name = s.SocietiesMembers.Where(sm => sm.SocietyId == s.SocietyId).Select(sm => new
+                //{
+                //    name = sm.Member.Name,
+                //}).FirstOrDefault(),
 
-//                cvr = s.CVR_Number,
-//                address = s.Address,
-//                activity = s.Activity
+                cvr = s.CVR_Number,
+                address = s.Address,
+                activity = s.Activity
 
-//            }).ToListAsync();
+            }).ToListAsync();
 
             //}).ToListAsync();
 

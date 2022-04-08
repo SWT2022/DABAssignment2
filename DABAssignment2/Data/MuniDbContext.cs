@@ -40,7 +40,9 @@ namespace DABAssignment2
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-
+            //Society
+            modelBuilder.Entity<Society>().HasIndex(s => new { s.CVR_Number })
+                .IsUnique();
 
             #region Relationships
             // Properties
