@@ -40,6 +40,7 @@ using (var context = new MuniDbContext())
                 break;
         }
 
+        Thread.Sleep(1000);
         Console.WriteLine("Type any key to continue");
         Console.ReadKey();
     }

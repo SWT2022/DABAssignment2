@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using DABAssignment2.Models;
@@ -70,23 +71,18 @@ namespace DABAssignment2.QueryHelpers
 
             var societies = await context.Societies.OrderBy(s => s.Activity).Select(s => new
             {
-                name = s.SocietiesMembers.Where(sm => sm.SocietyId == s.SocietyId).Select(sm => new
-                {
-                    name = sm.Member.Name,
-                }).FirstOrDefault(),
-
-                cvr = s.CVR_Number,
-                address = s.Address,
-                activity = s.Activity
-
+                CVR = s.CVR_Number,
+                Address = s.Address,
+                Activity = s.Activity,
+                Chairman = s.SocietiesMembers.Where(sm => sm.Member is Chairmen)
+                    .Select(sm => sm.Member.Name).FirstOrDefault(),
             }).ToListAsync();
 
             Console.WriteLine("Societies:");
             foreach (var society in societies)
             {
-
-                Console.WriteLine($"Activity: {society.activity} CVR: {society.cvr}" +
-                    $" Address: {society.address} name: {society.name.name}");
+                Console.WriteLine($"Activity: {society.Activity} CVR: {society.CVR}" +
+                                  $" Address: {society.Address} name: {society.Chairman}");
             }
 
         }
@@ -103,10 +99,9 @@ namespace DABAssignment2.QueryHelpers
                 {
                     SocietyName = sm.Society.Name,
                 }).FirstOrDefault(),
-                Chairman = context.Chairmens
-                    .Where(c => c.SocietiesMembers.Select(sm => sm.SocietyId).FirstOrDefault() == 
-                                mrr.Member.SocietiesMembers.Select(sm => sm.SocietyId).FirstOrDefault())
-                    .Select(m => new {Chairman = m.Name}).FirstOrDefault(),
+                Chairman = mrr.Member.SocietiesMembers.Where(sm => sm.Member is Chairmen)
+                    .Select(sm => sm.Member.Name).FirstOrDefault(),
+
                 Reserver = mrr.Member.Name,
             }).ToListAsync();
 
@@ -114,9 +109,14 @@ namespace DABAssignment2.QueryHelpers
             {
                 Console.WriteLine($"Room with Id {reservation.RoomId} at address {reservation.RoomAddress} is reserved" +
                                   $" between {reservation.startTime} - {reservation.endTime} by {reservation.SocietyName.SocietyName} " +
-                                  $"whose chairman is {reservation.Chairman.Chairman}. " +
-                                  $"Reservation was made by {reservation.Reserver}");
+                                  $"whose chairman is " + (reservation.Chairman != null ? reservation.Chairman : "non existing.") +
+                                  $" Reservation was made by {reservation.Reserver}\n");
             }
+        }
+
+        public async void ListFutureBookings(MuniDbContext context)
+        {
+            var futureBookings = await context.
         }
     }
 }
