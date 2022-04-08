@@ -17,8 +17,6 @@ namespace DABAssignment2
             optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=DAB_Assignment2;Persist Security Info=True;User ID=SA;Password=Docker_Jacob#7953;TrustServerCertificate=True");
         }
 
-        //public DbSet<Municipality> Municipalities { get; set; }
-
         public DbSet<Society> Societies { get; set; }
 
         public DbSet<Member> Members { get; set; }
@@ -110,16 +108,6 @@ namespace DABAssignment2
                 .WithMany(m => m.RoomsReservations)
                 .HasForeignKey(mlr => mlr.MemberId);
 
-            //// SocietiesMembers (many to many)
-            //modelBuilder.Entity<SocietiesMember>()
-            //    .HasOne(sm => sm.Society)
-            //    .WithMany(s => s.SocietiesMembers)
-            //    .HasForeignKey(sm => sm.SocietyId);
-            //modelBuilder.Entity<SocietiesMember>()
-            //    .HasOne(sm => sm.Member)
-            //    .WithMany(m => m.SocietiesMembers)
-            //    .HasForeignKey(sm => sm.MemberId);
-
             // LocationsProperties (many to many)
             modelBuilder.Entity<LocationsProperties>()
                 .HasOne(lp => lp.Location)
@@ -130,12 +118,13 @@ namespace DABAssignment2
                 .WithMany(p => p.LocationsProperties)
                 .HasForeignKey(lp => lp.PropName);
 
-
+            // Room locations (many to one)
             modelBuilder.Entity<Room>()
                 .HasOne(l => l.Location)
                 .WithMany(r => r.Rooms)
                 .HasForeignKey(l => l.LocationId);
 
+            // Society Member (many to one)
             modelBuilder.Entity<Society>()
                 .HasOne(m => m.Member)
                 .WithMany(l => l.Societies)
@@ -195,7 +184,42 @@ namespace DABAssignment2
                     PropName = "WC",
                 });
 
- 
+            modelBuilder.Entity<Member>().HasData(
+                new Member
+                {
+                    HomeAddress = "Aarhusvej 90",
+                    IdentityNumber = 1234564,
+                    MemberId = 1,
+                    Name = "Jan",
+                    PhoneNumber = 12345678,
+                    Email = "jan@email.com",
+
+
+                },
+                new Member
+                {
+                    HomeAddress = "SesameStreet 12413",
+                    IdentityNumber = 2142534635,
+                    MemberId = 2,
+                    Name = "Ole",
+                    PhoneNumber = 23456789,
+                    Email = "Ole@email.com",
+
+                });
+
+            modelBuilder.Entity<Chairmen>().HasData(
+                new Chairmen
+                {
+                    MemberId = 3,
+                    Name = "Per",
+                    PhoneNumber = 87654321,
+                    Email = "per@email.com",
+                    HomeAddress = "Gadevej 9",
+                    CPR_number = "1234345590",
+                    IdentityNumber = 574839,
+                });
+
+
             modelBuilder.Entity<Society>().HasData(
                 new Society
                 {
@@ -220,113 +244,12 @@ namespace DABAssignment2
                     MemberId = 3,
                     SocietyId = 3,
                     Activity = "Gaming",
-                    CVR_Number = 4321,
+                    CVR_Number = 47658,
                     Name = "Gamers",
                     Address = "Aarhusvej 14"
                 }
                 );
 
-
-            modelBuilder.Entity<Member>().HasData(
-                new Member
-                {
-                    HomeAddress = "Aarhusvej 90",
-                    IdentityNumber = 1234564,
-                    MemberId = 1,
-                    Name = "Jan",
-                    PhoneNumber = 12345678,
-                    Email = "jan@email.com",
-
-
-                },
-                new Member
-                {
-                    HomeAddress = "SesameStreet 12413",
-                    IdentityNumber = 2142534635,
-                    MemberId = 2,
-                    Name = "Ole",
-                    PhoneNumber = 23456789,
-                    Email = "Ole@email.com",
-
-                });
-
-            //modelBuilder.Entity<SocietiesMember>().HasData(
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 1,
-            //        SocietyId = 1,
-            //        MemberId = 1,
-
-            //    },
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 2,
-            //        SocietyId = 1,
-            //        MemberId = 2,
-            //    },
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 3,
-            //        SocietyId = 1,
-            //        MemberId = 3,
-            //    },
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 4,
-            //        SocietyId = 2,
-            //        MemberId = 1,
-            //    },
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 5,
-            //        SocietyId = 2,
-            //        MemberId = 2,
-            //    },
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 6,
-            //        SocietyId = 3,
-            //        MemberId = 3,
-            //    },
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 7,
-            //        SocietyId = 3,
-            //        MemberId = 2,
-            //    },
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 8,
-            //        SocietyId = 1,
-            //        MemberId = 4,
-            //    },
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 9,
-            //        SocietyId = 2,
-            //        MemberId = 5,
-
-            //    },
-            //    new SocietiesMember
-            //    {
-            //        SocietiesMemberId = 10,
-            //        SocietyId = 3,
-            //        MemberId = 6,
-
-            //    });
-
-            modelBuilder.Entity<Chairmen>().HasData(
-                new Chairmen
-                {
-
-                    MemberId = 4,
-                    Name = "Per",
-                    PhoneNumber = 87654321,
-                    Email = "per@email.com",
-                    HomeAddress = "Gadevej 9",
-                    CPR_number = "1234345590",
-                });
-  
 
             modelBuilder.Entity<Location>().HasData(
                 new Location
@@ -406,7 +329,6 @@ namespace DABAssignment2
                     RoomId = 1,
                     LocationId = 1,
                     Capacity = 330,
-                    Access_code = null,
                 },
                 new Room
                 {
@@ -414,7 +336,6 @@ namespace DABAssignment2
                     RoomId = 2,
                     LocationId = 1,
                     Capacity = 340,
-                    Access_code = null,
                 },
                 new Room
                 {
@@ -522,51 +443,28 @@ namespace DABAssignment2
                 new MembersRoomsReservations
                 {
                     MemberId = 1,
-                    ReservationBegin = DateTime.Now,
-                    ReservationEnd = DateTime.Now.AddHours(1),
+                    ReservationBegin = DateTime.Now.AddMonths(3),
+                    ReservationEnd = DateTime.Now.AddMonths(3).AddHours(5),
                     RoomId = 1,
 
                 },
                 new MembersRoomsReservations
                 {
                     MemberId = 2,
-                    ReservationBegin = DateTime.Now,
-                    ReservationEnd = DateTime.Now.AddHours(1),
+                    ReservationBegin = DateTime.Parse("02/15/2022"),
+                    ReservationEnd = DateTime.Parse("02/16/2022"),
                     RoomId = 2,
 
                 },
                 new MembersRoomsReservations
                 {
                     MemberId = 3,
-                    ReservationBegin = DateTime.Now,
-                    ReservationEnd = DateTime.Now.AddHours(1),
+                    ReservationBegin = DateTime.Now.AddMonths(5),
+                    ReservationEnd = DateTime.Now.AddMonths(5).AddDays(1),
                     RoomId = 3,
 
-                },
-                new MembersRoomsReservations
-                {
-                    MemberId = 4,
-                    ReservationBegin = DateTime.Now,
-                    ReservationEnd = DateTime.Now.AddHours(1),
-                    RoomId = 4,
-
-                },
-                new MembersRoomsReservations
-                {
-                    MemberId = 5,
-                    ReservationBegin = DateTime.Now,
-                    ReservationEnd = DateTime.Now.AddHours(1),
-                    RoomId = 5,
-
-                },
-                new MembersRoomsReservations
-                {
-                    MemberId = 6,
-                    ReservationBegin = DateTime.Now,
-                    ReservationEnd = DateTime.Now.AddHours(1),
-                    RoomId = 6,
-
-                });
+                }
+                );
 
             modelBuilder.Entity<MembersLocationsReservations>().HasData(
                 new MembersLocationsReservations
@@ -592,7 +490,8 @@ namespace DABAssignment2
                     ReservationEnd = DateTime.Now.AddHours(1),
                     LocationId = 3,
 
-                });
+                }
+                );
 
             #endregion
 

@@ -75,9 +75,26 @@ namespace DABAssignment2.QueryHelpers
                                   $"whose key responsable is " + (reservation.Key_Responsable.Name != null ? reservation.Key_Responsable.Name : "non existing.") + "\n");
             }
         }
-        //public async void ListFutureBookings(MuniDbContext context)
-        //{
-        //    var futureBookings = await context.
-        //}
+        public async void ListFutureBookings(MuniDbContext context)
+        {
+            var futureBookings = await context.MembersRoomsReservations
+                .Where(mrr => mrr.ReservationBegin > DateTime.Now)
+                .Select(mrr => new
+                {
+                    startTime = mrr.ReservationBegin,
+                    endTime = mrr.ReservationEnd,
+                    RoomAddress = mrr.Room.Location.Address,
+                    RoomId = mrr.Room.RoomId,
+                    Access_code = mrr.Room.Access_code,
+                    Key_addr = mrr.Room.Key_Address,
+                }).ToListAsync();
+
+            foreach (var booking in futureBookings)
+            {
+                Console.WriteLine($"Room with Id {booking.RoomId} at address {booking.RoomAddress} is reserved" +
+                                  $" between {booking.startTime} - {booking.endTime}. " + "Access by " +
+                                   (booking.Access_code == null ? ("key picked up at " + booking.Key_addr) : ("pin code " + booking.Access_code)) + "\n");
+            }
+        }
     }
 }
