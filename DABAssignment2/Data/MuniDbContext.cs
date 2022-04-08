@@ -14,7 +14,7 @@ namespace DABAssignment2
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=DAB_Assignment2;Persist Security Info=True;User ID=SA;Password=Docker_Jacob#7953;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("");
         }
 
         public DbSet<Society> Societies { get; set; }
@@ -28,8 +28,6 @@ namespace DABAssignment2
         public DbSet<Properties> Properties { get; set; }
 
         public DbSet<Room> Rooms { get; set; }
-
-        //public DbSet<SocietiesMember> SocietiesMember { get; set; }
 
         public DbSet<MembersLocationsReservations> MembersLocationsReservations { get; set; }
 
@@ -49,6 +47,11 @@ namespace DABAssignment2
             // RoomHolidays (one to many)
             modelBuilder.Entity<RoomHolidays>().HasKey(lh => new { lh.Holiday, lh.RoomId });
 
+            modelBuilder.Entity<RoomHolidays>()
+                .HasOne(lh => lh.Room)
+                .WithMany(l => l.Holidays)
+                .HasForeignKey(lh => lh.RoomId);
+
             // LocationHolidays (one to many)
             modelBuilder.Entity<LocationHolidays>().HasKey(lh => new {lh.Holiday, lh.LocationId});
 
@@ -66,12 +69,6 @@ namespace DABAssignment2
                 .WithMany(l => l.OpeningHours)
                 .HasForeignKey(loh => loh.LocationId);
 
-            
-
-            modelBuilder.Entity<RoomHolidays>()
-                .HasOne(lh => lh.Room)
-                .WithMany(l => l.Holidays)
-                .HasForeignKey(lh => lh.RoomId);
 
             // RoomOpeningHours (one to many)
             modelBuilder.Entity<RoomOpeningHours>()
