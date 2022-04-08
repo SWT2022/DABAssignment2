@@ -236,7 +236,7 @@ namespace DABAssignment2
                     Name = "Jan",
                     PhoneNumber = 12345678,
                     Email = "jan@email.com",
-     
+
 
                 },
                 new Member
@@ -248,18 +248,7 @@ namespace DABAssignment2
                     PhoneNumber = 23456789,
                     Email = "Ole@email.com",
 
-                },
-                new Member
-                {
-                    HomeAddress = "Randersvej 124",
-                    IdentityNumber = 1234251,
-                    MemberId = 3,
-                    Name = "Jens",
-                    PhoneNumber = 98765421,
-                    Email = "Jens@email.com",
-  
-                }
-                );
+                });
 
             //modelBuilder.Entity<SocietiesMember>().HasData(
             //    new SocietiesMember
@@ -331,30 +320,13 @@ namespace DABAssignment2
                 {
 
                     MemberId = 4,
-                    Name = "Per1",
+                    Name = "Per",
                     PhoneNumber = 87654321,
                     Email = "per@email.com",
                     HomeAddress = "Gadevej 9",
                     CPR_number = "1234345590",
-                },
-                new Chairmen
-                {
-                    MemberId = 5,
-                    Name = "Per2",
-                    PhoneNumber = 87654321,
-                    Email = "per@email.com",
-                    HomeAddress = "Gadevej 10",
-                    CPR_number = "1234567890",
-                },
-                new Chairmen
-                {
-                    MemberId = 6,
-                    Name = "Per3",
-                    PhoneNumber = 87654321,
-                    Email = "per@email.com",
-                    HomeAddress = "Gadevej 11",
-                    CPR_number = "1234545690",
                 });
+  
 
             modelBuilder.Entity<Location>().HasData(
                 new Location
